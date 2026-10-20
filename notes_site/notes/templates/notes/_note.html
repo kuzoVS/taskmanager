@@ -1,0 +1,25 @@
+<div class="col-sm-6 col-lg-4 col-xl-3">
+  <div class="sticker sticker-{{ note.color }}{% if note.pinned %} is-pinned{% endif %}">
+    {% if note.pinned %}<span class="pushpin" title="Закреплено"></span>{% endif %}
+    <h5 class="hand">{{ note.title }}</h5>
+    <p class="note-body">{{ note.body }}</p>
+    <small class="text-muted d-block mb-2">{{ note.created_at|date:"d.m.Y H:i" }}</small>
+
+    <div class="d-flex flex-wrap gap-1">
+      {% if not note.archived %}
+      <form method="post" action="{% url 'toggle_pin' note.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-sm text-nowrap btn-outline-dark">{% if note.pinned %}Открепить{% else %}Закрепить{% endif %}</button>
+      </form>
+      {% endif %}
+      <form method="post" action="{% url 'toggle_archive' note.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-sm text-nowrap btn-outline-dark">{% if note.archived %}Вернуть{% else %}В архив{% endif %}</button>
+      </form>
+      <form method="post" action="{% url 'delete_note' note.pk %}" data-confirm="Удалить заметку навсегда?">
+        {% csrf_token %}
+        <button class="btn btn-sm text-nowrap btn-outline-danger">Удалить</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+[Unit]
+Description=Notes site (Django + gunicorn)
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/notes/notes_site
+EnvironmentFile=/etc/notes.env
+ExecStart=/usr/bin/python3 -m gunicorn config.wsgi --bind 127.0.0.1:8000 --workers 3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

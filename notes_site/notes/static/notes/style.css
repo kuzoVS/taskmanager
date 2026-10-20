@@ -1,0 +1,91 @@
+.cork {
+  min-height: 100vh;
+  background-color: #b5835a;
+  background-image:
+    radial-gradient(#9a6b45 1px, transparent 1.5px),
+    radial-gradient(#c99b72 1px, transparent 1.5px);
+  background-size: 14px 14px, 22px 22px;
+  background-position: 0 0, 7px 9px;
+}
+
+.wood-bar {
+  background: linear-gradient(#6b4226, #4e2f1a);
+  border-bottom: 4px solid #3b2313;
+}
+
+.hand {
+  font-family: "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive;
+}
+
+.sticker {
+  position: relative;
+  padding: 1.4rem 1rem 1rem;
+  min-height: 180px;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, .35);
+  transform: rotate(-2deg);
+  transition: transform .2s, box-shadow .2s;
+}
+.col-sm-6:nth-child(2n) .sticker { transform: rotate(1.5deg); }
+.col-sm-6:nth-child(3n) .sticker { transform: rotate(-1deg); }
+
+.sticker:hover {
+  transform: rotate(0) scale(1.04);
+  box-shadow: 6px 12px 18px rgba(0, 0, 0, .4);
+  z-index: 2;
+}
+
+.col-sm-6 .sticker.is-pinned { transform: rotate(0); }
+
+.note-body {
+  white-space: pre-wrap;     word-break: break-word;
+}
+
+.sticker-yellow { background: #fff59d; }
+.sticker-pink   { background: #f8bbd0; }
+.sticker-green  { background: #c5e1a5; }
+.sticker-blue   { background: #b3e5fc; }
+.sticker-purple { background: #d1c4e9; }
+
+.pushpin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff8a80, #c62828 60%, #7f0000);
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, .5);
+}
+
+.archived-board .sticker {
+  filter: grayscale(60%);
+  opacity: .8;
+}
+
+.auth-card { transform: rotate(-1deg); margin-top: 2rem; }
+
+.add-card {
+  background: #fdfaf3;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+}
+
+.color-dot {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #888;
+  cursor: pointer;
+}
+.btn-check:checked + .color-dot {
+  border: 3px solid #222;
+  transform: scale(1.15);
+}
+
+.empty {
+  color: #fff;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px #000;
+}

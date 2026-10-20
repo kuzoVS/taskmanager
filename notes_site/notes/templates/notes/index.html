@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Доска{% endblock %}
+{% block content %}
+
+<div class="card add-card mb-4">
+  <div class="card-body">
+    <form method="post" action="{% url 'add_note' %}" class="row g-2 align-items-end">
+      {% csrf_token %}
+      <div class="col-md-4">
+        <label class="form-label" for="{{ form.title.id_for_label }}">Заголовок</label>
+        {{ form.title }}
+      </div>
+      <div class="col-md-5">
+        <label class="form-label" for="{{ form.body.id_for_label }}">Текст <small class="text-muted" id="counter">0/1000</small></label>
+        {{ form.body }}
+      </div>
+      <div class="col-md-3">
+        <label class="form-label d-block">Цвет стикера</label>
+        {% for radio in form.color %}
+          <input type="radio" class="btn-check" name="{{ radio.data.name }}" id="c-{{ radio.data.value }}"
+                 value="{{ radio.data.value }}" {% if radio.data.selected %}checked{% endif %}>
+          <label class="color-dot sticker-{{ radio.data.value }}" for="c-{{ radio.data.value }}" title="{{ radio.choice_label }}"></label>
+        {% endfor %}
+        <button class="btn btn-dark ms-2">Прикрепить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if notes %}
+  <div class="row g-4">
+    {% for note in notes %}{% include "notes/_note.html" %}{% endfor %}
+  </div>
+{% else %}
+  <p class="empty">Доска пустая. Прикрепите первый стикер!</p>
+{% endif %}
+{% endblock %}
